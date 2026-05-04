@@ -184,7 +184,22 @@ Weak criteria like "make it work" require clarification.
 
 ---
 
-## 5. Unity Verification
+## 5. Repository Workflow
+
+When working with GitHub issues, commits, branches, pull requests, labels, or templates, follow `WORKFLOW.md`.
+
+In particular:
+
+- Use the issue, commit, and pull request naming rules from `WORKFLOW.md`.
+- Use the branch naming rules from `WORKFLOW.md` before creating or renaming branches.
+- Keep issue titles, commit descriptions, and pull request descriptions understandable to the project owner.
+- Reference related issues in commits and pull requests according to `WORKFLOW.md`.
+- After creating a pull request, apply the matching assignee and label according to `WORKFLOW.md`.
+- Use pull request bodies, not commit messages, to close issues automatically.
+
+---
+
+## 6. Unity Verification
 
 For Unity tasks, verification may include:
 
@@ -202,7 +217,7 @@ Do not claim that a Unity behavior was verified in Play Mode unless it was actua
 
 ---
 
-## 6. Success Signals
+## 7. Success Signals
 
 These guidelines are working if:
 
