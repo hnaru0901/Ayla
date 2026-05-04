@@ -1,0 +1,39 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Unity generated files
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# IDE and editor folders
+.vs/
+.vscode/
+.idea/
+
+# Large local-only asset folders
+Assets/Art/
+Assets/Audio/
+Assets/Models/
+Assets/Textures/
+Assets/Videos/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
