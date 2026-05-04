@@ -70,6 +70,26 @@ Example:
 feat: 포션 제작 기본 흐름 추가 (#12)
 ```
 
+## Pull Request Metadata
+
+After creating a pull request, assign the owner and add the matching label with `gh pr edit`.
+
+Format:
+
+```text
+gh pr edit <pr-number> --add-assignee hnaru0901 --add-label "<label-name>"
+```
+
+Examples:
+
+```text
+gh pr edit 12 --add-assignee hnaru0901 --add-label "✨ feature"
+gh pr edit 18 --add-assignee hnaru0901 --add-label "🐛 bug"
+gh pr edit 27 --add-assignee hnaru0901 --add-label "♻️ refactor"
+gh pr edit 31 --add-assignee hnaru0901 --add-label "🧹 chore"
+gh pr edit 34 --add-assignee hnaru0901 --add-label "📝 docs"
+```
+
 ## Closing Issues
 
 Use the PR body to close issues automatically.
