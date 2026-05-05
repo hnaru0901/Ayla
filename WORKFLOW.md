@@ -1,6 +1,6 @@
 # WORKFLOW.md
 
-StarlitWitch repository workflow rules.
+Ayla repository workflow rules.
 
 ## Issue Titles
 

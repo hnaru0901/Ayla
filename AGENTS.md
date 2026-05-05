@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Behavioral guidelines to reduce common LLM coding mistakes in the StarlitWitch Unity project.
+Behavioral guidelines to reduce common LLM coding mistakes in the Ayla Unity project.
 
 These instructions are for Codex and other coding agents working in this repository.
 
@@ -139,7 +139,7 @@ Prefer simple Unity patterns first.
 
 ## 3. Project Direction
 
-StarlitWitch is a casual 3D witch management and crafting game.
+Ayla is a casual 3D witch management and crafting game.
 
 The early development goal is not to build a complete architecture. The goal is to quickly verify a small playable core loop:
 
