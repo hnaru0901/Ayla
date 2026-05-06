@@ -54,6 +54,15 @@ chore/github-templates/31
 docs/potion-system-direction/34
 ```
 
+## Base Branch
+
+Use `develop` as the default integration branch.
+
+- Create feature, docs, chore, fix, and refactor branches from `develop`.
+- Open pull requests against `develop`.
+- Do not open pull requests against `main`.
+- `main` is not used for active development.
+
 ## Pull Request Titles
 
 Use the same style as commit messages and include the related issue number.
