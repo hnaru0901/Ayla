@@ -23,6 +23,18 @@ Before implementing:
 - If something is unclear and affects architecture, data loss, asset references, serialized fields, scene references, or public APIs, stop and ask.
 - For low-risk, reversible choices, state the assumption and proceed with the simplest option.
 
+### Unity Implementation Confirmation Gate
+
+Treat Unity C# scripts, tests, scenes, prefabs, assets, input setup, camera setup, and object placement as implementation work.
+
+Before writing, editing, staging, or committing Unity implementation work:
+
+- Confirm the exact scope with the project owner if the request uses ambiguous wording such as "before scene setup", "prep", "basic work", "just set up", or "for now".
+- Ask before choosing an input approach, controller component, camera behavior, serialized fields, scene object structure, prefab structure, or asset layout.
+- Do not assume that "scene creation/placement is excluded" means "C# implementation is approved".
+- Do not commit Unity implementation work unless the user explicitly asks to commit or has already approved that implementation scope.
+- For truly trivial documentation-only or repository workflow changes, this gate does not apply.
+
 ### Simplicity First
 
 **Minimum code that solves the problem. Nothing speculative.**
