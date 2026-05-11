@@ -1,0 +1,41 @@
+fileFormatVersion: 2
+guid: 7d2f85fb46c10ee42829e7c9b0884fb5
+*** Add File: Assets/Scripts/UI/CarryMarker.cs
+using UnityEngine;
+
+namespace Ayla
+{
+    public class CarryMarker : MonoBehaviour
+    {
+        [SerializeField] private PlayerCarryState carryState;
+        [SerializeField] private GameObject marker;
+
+        private void OnEnable()
+        {
+            if (carryState != null)
+            {
+                carryState.ItemChanged += UpdateMarker;
+            }
+
+            UpdateMarker(carryState != null ? carryState.CurrentItem : CarryItemType.None);
+        }
+
+        private void OnDisable()
+        {
+            if (carryState != null)
+            {
+                carryState.ItemChanged -= UpdateMarker;
+            }
+        }
+
+        private void UpdateMarker(CarryItemType item)
+        {
+            if (marker == null)
+            {
+                return;
+            }
+
+            marker.SetActive(item != CarryItemType.None);
+        }
+    }
+}

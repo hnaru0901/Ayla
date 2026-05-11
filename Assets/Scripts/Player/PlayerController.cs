@@ -10,14 +10,21 @@ namespace Ayla
         [SerializeField] private float turnSpeed = 720f;
 
         private CharacterController characterController;
+        private PlayerInteraction playerInteraction;
 
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
+            playerInteraction = GetComponent<PlayerInteraction>();
         }
 
         private void Update()
         {
+            if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                playerInteraction?.TryInteract();
+            }
+
             Vector2 input = ReadKeyboardInput();
             Vector3 movement = PlayerMovementInput.ToWorldDirection(input);
 
