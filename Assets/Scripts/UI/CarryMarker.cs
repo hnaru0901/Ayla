@@ -4,8 +4,17 @@ namespace Ayla
 {
     public class CarryMarker : MonoBehaviour
     {
+        [System.Serializable]
+        private struct CarryItemSprite
+        {
+            public CarryItemType item;
+            public Sprite sprite;
+        }
+
         [SerializeField] private PlayerCarryState carryState;
         [SerializeField] private GameObject marker;
+        [SerializeField] private SpriteRenderer markerRenderer;
+        [SerializeField] private CarryItemSprite[] itemSprites;
 
         private void OnEnable()
         {
@@ -32,7 +41,31 @@ namespace Ayla
                 return;
             }
 
-            marker.SetActive(item != CarryItemType.None);
+            Sprite sprite = FindSprite(item);
+            marker.SetActive(sprite != null);
+
+            if (markerRenderer != null)
+            {
+                markerRenderer.sprite = sprite;
+            }
+        }
+
+        private Sprite FindSprite(CarryItemType item)
+        {
+            if (item == CarryItemType.None || itemSprites == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < itemSprites.Length; i++)
+            {
+                if (itemSprites[i].item == item)
+                {
+                    return itemSprites[i].sprite;
+                }
+            }
+
+            return null;
         }
     }
 }

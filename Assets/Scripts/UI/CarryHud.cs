@@ -5,35 +5,69 @@ namespace Ayla
 {
     public class CarryHud : MonoBehaviour
     {
+        [System.Serializable]
+        private struct CarryItemIcon
+        {
+            public CarryItemType item;
+            public Sprite sprite;
+        }
+
         [SerializeField] private PlayerCarryState carryState;
         [SerializeField] private Text heldText;
+        [SerializeField] private Image heldImage;
+        [SerializeField] private CarryItemIcon[] itemIcons;
 
         private void OnEnable()
         {
             if (carryState != null)
             {
-                carryState.ItemChanged += UpdateText;
+                carryState.ItemChanged += UpdateView;
             }
 
-            UpdateText(carryState != null ? carryState.CurrentItem : CarryItemType.None);
+            UpdateView(carryState != null ? carryState.CurrentItem : CarryItemType.None);
         }
 
         private void OnDisable()
         {
             if (carryState != null)
             {
-                carryState.ItemChanged -= UpdateText;
+                carryState.ItemChanged -= UpdateView;
             }
         }
 
-        private void UpdateText(CarryItemType item)
+        private void UpdateView(CarryItemType item)
         {
-            if (heldText == null)
+            if (heldText != null)
+            {
+                heldText.text = $"Held: {item}";
+            }
+
+            if (heldImage == null)
             {
                 return;
             }
 
-            heldText.text = $"Held: {item}";
+            Sprite sprite = FindSprite(item);
+            heldImage.sprite = sprite;
+            heldImage.enabled = sprite != null;
+        }
+
+        private Sprite FindSprite(CarryItemType item)
+        {
+            if (item == CarryItemType.None || itemIcons == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < itemIcons.Length; i++)
+            {
+                if (itemIcons[i].item == item)
+                {
+                    return itemIcons[i].sprite;
+                }
+            }
+
+            return null;
         }
     }
 }
