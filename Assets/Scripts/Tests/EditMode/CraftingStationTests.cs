@@ -90,6 +90,14 @@ namespace Ayla.Tests
             Assert.That(station.NormalizedProgress, Is.EqualTo(0.25f));
         }
 
+        [Test]
+        public void FormatProgressLabel_ShowsPercentUntilComplete()
+        {
+            Assert.That(CraftingStationIndicator.FormatProgressLabel(0f, false), Is.EqualTo("0%"));
+            Assert.That(CraftingStationIndicator.FormatProgressLabel(0.375f, false), Is.EqualTo("38%"));
+            Assert.That(CraftingStationIndicator.FormatProgressLabel(1f, true), Is.EqualTo("Done"));
+        }
+
         private PlayerCarryState CreateCarryState()
         {
             return CreateObject("PlayerCarryState").AddComponent<PlayerCarryState>();
