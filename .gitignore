@@ -25,9 +25,17 @@
 .vs/
 .vscode/
 .idea/
+.superpowers/
 
 # Large local-only asset folders
 Assets/Art/
+!Assets/Art/
+Assets/Art/*
+!Assets/Art/Icons/
+!Assets/Art/Icons.meta
+Assets/Art/Icons/*
+!Assets/Art/Icons/*.png
+!Assets/Art/Icons/*.png.meta
 Assets/Audio/
 Assets/Models/
 Assets/Textures/

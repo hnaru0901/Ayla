@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 namespace Ayla
 {
     [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(PlayerWorkState))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float moveSpeed = 4f;
@@ -11,24 +12,41 @@ namespace Ayla
 
         private CharacterController characterController;
         private PlayerInteraction playerInteraction;
+        private PlayerWorkState playerWorkState;
 
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
             playerInteraction = GetComponent<PlayerInteraction>();
+            playerWorkState = GetComponent<PlayerWorkState>();
+
+            if (playerWorkState == null)
+            {
+                playerWorkState = gameObject.AddComponent<PlayerWorkState>();
+            }
         }
 
         private void Update()
         {
-            if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+            Vector2 input = ReadKeyboardInput();
+            Vector3 movement = PlayerMovementInput.ToWorldDirection(input);
+            bool hasMovementInput = movement.sqrMagnitude > 0f;
+
+            if (playerWorkState != null && playerWorkState.IsWorking)
+            {
+                if (!hasMovementInput)
+                {
+                    return;
+                }
+
+                playerWorkState.CancelWork();
+            }
+            else if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 playerInteraction?.TryInteract();
             }
 
-            Vector2 input = ReadKeyboardInput();
-            Vector3 movement = PlayerMovementInput.ToWorldDirection(input);
-
-            if (movement.sqrMagnitude <= 0f)
+            if (!hasMovementInput)
             {
                 return;
             }
