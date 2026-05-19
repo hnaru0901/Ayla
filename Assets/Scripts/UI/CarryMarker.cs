@@ -5,7 +5,7 @@ namespace Ayla
     public class CarryMarker : MonoBehaviour
     {
         [System.Serializable]
-        private struct CarryItemSprite
+        private struct LocalCarryItemSprite
         {
             public CarryItemType item;
             public Sprite sprite;
@@ -14,7 +14,8 @@ namespace Ayla
         [SerializeField] private PlayerCarryState carryState;
         [SerializeField] private GameObject marker;
         [SerializeField] private SpriteRenderer markerRenderer;
-        [SerializeField] private CarryItemSprite[] itemSprites;
+        [SerializeField] private CarryItemSpriteLibrary spriteLibrary;
+        [SerializeField] private LocalCarryItemSprite[] itemSprites;
 
         private void OnEnable()
         {
@@ -52,6 +53,11 @@ namespace Ayla
 
         private Sprite FindSprite(CarryItemType item)
         {
+            if (spriteLibrary != null)
+            {
+                return spriteLibrary.FindSprite(item);
+            }
+
             if (item == CarryItemType.None || itemSprites == null)
             {
                 return null;

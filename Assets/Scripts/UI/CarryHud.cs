@@ -15,6 +15,7 @@ namespace Ayla
         [SerializeField] private PlayerCarryState carryState;
         [SerializeField] private Text heldText;
         [SerializeField] private Image heldImage;
+        [SerializeField] private CarryItemSpriteLibrary spriteLibrary;
         [SerializeField] private CarryItemIcon[] itemIcons;
 
         private void OnEnable()
@@ -54,6 +55,11 @@ namespace Ayla
 
         private Sprite FindSprite(CarryItemType item)
         {
+            if (spriteLibrary != null)
+            {
+                return spriteLibrary.FindSprite(item);
+            }
+
             if (item == CarryItemType.None || itemIcons == null)
             {
                 return null;

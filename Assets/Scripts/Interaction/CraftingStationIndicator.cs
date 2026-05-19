@@ -5,9 +5,19 @@ namespace Ayla
 {
     public class CraftingStationIndicator : MonoBehaviour
     {
+        [System.Serializable]
+        private struct LocalCarryItemSprite
+        {
+            public CarryItemType item;
+            public Sprite sprite;
+        }
+
         [SerializeField] private CraftingStation station;
         [SerializeField] private Renderer targetRenderer;
+        [SerializeField] private SpriteRenderer itemRenderer;
         [SerializeField] private TMP_Text progressText;
+        [SerializeField] private CarryItemSpriteLibrary spriteLibrary;
+        [SerializeField] private LocalCarryItemSprite[] itemSprites;
         [SerializeField] private Color emptyColor = Color.clear;
         [SerializeField] private Color startColor = Color.red;
         [SerializeField] private Color completeColor = Color.blue;
@@ -32,14 +42,19 @@ namespace Ayla
 
         private void UpdateIndicator()
         {
-            if (targetRenderer == null || station == null)
+            if (station == null)
             {
                 return;
             }
 
             bool shouldShow = !station.IsEmpty;
-            targetRenderer.enabled = shouldShow;
+            if (targetRenderer != null)
+            {
+                targetRenderer.enabled = shouldShow;
+            }
+
             UpdateProgressText(shouldShow);
+            UpdateItemRenderer(shouldShow);
 
             if (!shouldShow)
             {
@@ -78,9 +93,47 @@ namespace Ayla
             progressText.text = FormatProgressLabel(station.NormalizedProgress, station.IsComplete);
         }
 
+        private void UpdateItemRenderer(bool shouldShow)
+        {
+            if (itemRenderer == null)
+            {
+                return;
+            }
+
+            Sprite sprite = shouldShow ? FindSprite(station.DisplayItem) : null;
+            itemRenderer.sprite = sprite;
+            itemRenderer.enabled = sprite != null;
+        }
+
+        private Sprite FindSprite(CarryItemType item)
+        {
+            if (spriteLibrary != null)
+            {
+                return spriteLibrary.FindSprite(item);
+            }
+
+            if (item == CarryItemType.None || itemSprites == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < itemSprites.Length; i++)
+            {
+                if (itemSprites[i].item == item)
+                {
+                    return itemSprites[i].sprite;
+                }
+            }
+
+            return null;
+        }
+
         private void SetColor(Color color)
         {
-            targetRenderer.material.color = color;
+            if (targetRenderer != null)
+            {
+                targetRenderer.material.color = color;
+            }
         }
     }
 }
