@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayla Project Direction Visual</title>
+  <style>
+    :root {
+      --ink: #2b2723;
+      --muted: #6f665d;
+      --line: #ded5c8;
+      --paper: #fffaf2;
+      --panel: #ffffff;
+      --gold: #e8bf62;
+      --green: #9fc79b;
+      --blue: #8db9d6;
+      --rose: #d99aaa;
+      --violet: #b8a4d8;
+      --brown: #b39173;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Segoe UI", "Malgun Gothic", Arial, sans-serif;
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 40px 0 56px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 10px 28px rgba(52, 38, 22, 0.08);
+    }
+
+    .lead {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .badge {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #fff;
+      font-size: 13px;
+      color: #4f463d;
+      white-space: nowrap;
+    }
+
+    .loop {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .loop-step {
+      min-height: 92px;
+      border-radius: 8px;
+      padding: 12px;
+      color: #251f18;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .loop-step span {
+      color: rgba(37, 31, 24, 0.62);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .loop-step:nth-child(1) { background: #f3d78c; }
+    .loop-step:nth-child(2) { background: #b9d7a9; }
+    .loop-step:nth-child(3) { background: #f0b7c3; }
+    .loop-step:nth-child(4) { background: #a9cbe0; }
+    .loop-step:nth-child(5) { background: #c8b7e2; }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .map-card {
+      min-height: 150px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 16px;
+    }
+
+    .map-card strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .map-card ul,
+    .category-card ul {
+      padding-left: 18px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .asset-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .category-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .category-title {
+      padding: 12px 14px;
+      color: #251f18;
+      font-weight: 800;
+    }
+
+    .category-card:nth-child(1) .category-title { background: #b9d7a9; }
+    .category-card:nth-child(2) .category-title { background: #f0b7c3; }
+    .category-card:nth-child(3) .category-title { background: #a9cbe0; }
+    .category-card:nth-child(4) .category-title { background: #c8b7e2; }
+    .category-card:nth-child(5) .category-title { background: #f3d78c; }
+    .category-card:nth-child(6) .category-title { background: #d9c3a5; }
+    .category-card:nth-child(7) .category-title { background: #d2b48c; }
+    .category-card:nth-child(8) .category-title { background: #d7b7d8; }
+    .category-card:nth-child(9) .category-title { background: #a9d6c2; }
+    .category-card:nth-child(10) .category-title { background: #c1c8d8; }
+
+    .category-body {
+      padding: 14px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .split {
+        grid-template-columns: 1fr;
+      }
+
+      .loop,
+      .asset-board,
+      .map-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        width: min(100% - 24px, 1180px);
+        padding-top: 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .loop,
+      .asset-board,
+      .map-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="panel">
+        <h1>Ayla Project Direction</h1>
+        <p class="lead">작은 3D 마녀 공방 운영 게임. 에일라가 포션을 만들고 손님을 응대하며, 집과 공방을 키워 나가는 방향으로 시작한다.</p>
+        <div class="badge-row">
+          <span class="badge">Ayla protagonist</span>
+          <span class="badge">Fantasy anime style</span>
+          <span class="badge">Chibi 3D</span>
+          <span class="badge">Unity3D</span>
+          <span class="badge">Witch workshop</span>
+          <span class="badge">Small first playable</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Core Loop</h2>
+        <div class="loop">
+          <div class="loop-step">재료<span>gather / grow</span></div>
+          <div class="loop-step">제작<span>craft potion</span></div>
+          <div class="loop-step">응대<span>serve customer</span></div>
+          <div class="loop-step">판매<span>earn money</span></div>
+          <div class="loop-step">개선<span>upgrade shop</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>Project Map</h2>
+      <div class="map-grid">
+        <div class="map-card">
+          <strong>고정 조건</strong>
+          <ul>
+            <li>주연 4인방 일러스트</li>
+            <li>에일라 주인공</li>
+            <li>마녀/마법 테마</li>
+            <li>Chibi 3D 포트폴리오</li>
+          </ul>
+        </div>
+        <div class="map-card">
+          <strong>첫 목표</strong>
+          <ul>
+            <li>공방 안 플레이</li>
+            <li>포션 제작</li>
+            <li>손님 주문과 판매</li>
+            <li>하루 결과와 개선</li>
+          </ul>
+        </div>
+        <div class="map-card">
+          <strong>확장 후보</strong>
+          <ul>
+            <li>집 꾸미기</li>
+            <li>밭/재배</li>
+            <li>숲 산책로 채집</li>
+            <li>마을/캠프 상점</li>
+          </ul>
+        </div>
+        <div class="map-card">
+          <strong>후속 검토</strong>
+          <ul>
+            <li>던전</li>
+            <li>전투/탐험</li>
+            <li>포션 던지기</li>
+            <li>친구 캐릭터 활용</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section panel">
+      <h2>Asset Category Board</h2>
+      <div class="asset-board">
+        <div class="category-card">
+          <div class="category-title">재료</div>
+          <div class="category-body">
+            <ul>
+              <li>허브/잎</li>
+              <li>꽃, 버섯</li>
+              <li>열매/씨앗</li>
+              <li>광물/결정</li>
+              <li>마법성 재료</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">포션</div>
+          <div class="category-body">
+            <ul>
+              <li>회복, 정화</li>
+              <li>성장, 변화</li>
+              <li>감정/정신</li>
+              <li>환경 반응</li>
+              <li>실패작</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">도구</div>
+          <div class="category-body">
+            <ul>
+              <li>제작 도구</li>
+              <li>농사 도구</li>
+              <li>채집 도구</li>
+              <li>탐험 도구</li>
+              <li>장사 도구</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">장비</div>
+          <div class="category-body">
+            <ul>
+              <li>착용 장비</li>
+              <li>마법 장비</li>
+              <li>보조 장비</li>
+              <li>탐험 장비</li>
+              <li>전투 후보 장비</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">중요한 물건</div>
+          <div class="category-body">
+            <ul>
+              <li>레시피</li>
+              <li>주문서</li>
+              <li>편지</li>
+              <li>열쇠/해금</li>
+              <li>기록/도감</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">가구</div>
+          <div class="category-body">
+            <ul>
+              <li>좌석</li>
+              <li>테이블</li>
+              <li>침대/휴식</li>
+              <li>수납 가구</li>
+              <li>책장/진열장</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">설비</div>
+          <div class="category-body">
+            <ul>
+              <li>제작 설비</li>
+              <li>가공 설비</li>
+              <li>병입/포장</li>
+              <li>보관 설비</li>
+              <li>계산/판매</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">장식</div>
+          <div class="category-body">
+            <ul>
+              <li>벽 장식</li>
+              <li>탁상 장식</li>
+              <li>바닥 장식</li>
+              <li>식물 장식</li>
+              <li>마법 장식</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">재배</div>
+          <div class="category-body">
+            <ul>
+              <li>씨앗</li>
+              <li>화분</li>
+              <li>밭 타일</li>
+              <li>성장 단계</li>
+              <li>비료/토양</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="category-card">
+          <div class="category-title">고정 장치</div>
+          <div class="category-body">
+            <ul>
+              <li>우편함</li>
+              <li>게시판</li>
+              <li>포탈</li>
+              <li>마법 거울</li>
+              <li>간판</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="note">전투/탐험은 현재 별도 1차 카테고리로 확정하지 않고, 포션/도구/장비/중요한 물건에 걸칠 수 있는 후속 콘텐츠로 둔다.</p>
+    </section>
+
+    <section class="section split">
+      <div class="panel">
+        <h2>Workshop Stats</h2>
+        <div class="map-grid">
+          <div class="map-card"><strong>아늑함</strong><p class="note">손님 만족, 대기 인내심, 팁, 재방문</p></div>
+          <div class="map-card"><strong>효율</strong><p class="note">제작 속도, 보관, 이동, 작업 동선</p></div>
+          <div class="map-card"><strong>신비로움</strong><p class="note">희귀 주문, 특수 손님, 마법 이벤트</p></div>
+          <div class="map-card"><strong>집중력</strong><p class="note">레시피 연구, 제작 정확도, 실패 감소</p></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Scope Guard</h2>
+        <p class="lead">첫 playable은 작게 유지한다. 큰 인벤토리, 꾸미기, 재배, 전투, 공방 스탯 아키텍처를 먼저 만들지 않는다.</p>
+        <p class="note">다만 일반 인벤토리와 공방 자산, 도구와 장비, 확정 시스템과 후속 후보가 나중에 분리될 수 있도록 데이터 구조는 막히지 않게 둔다.</p>
+      </div>
+    </section>
+
+    <p class="footer-note">Source: Docs/concept/2026-05-20-ayla-project-direction.md</p>
+  </main>
+</body>
+</html>
